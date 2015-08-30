@@ -1,1 +1,1 @@
-Accordion accessible plugin
+jQuery accordion accessible plugin

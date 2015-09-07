@@ -123,6 +123,7 @@ function l(x) {
 								return false;
 							});
 							this.on('click', function() {
+								if (!that.collection.isCollapseAllowed(that)) return;
 								that.toggle();
 							});
 							this.on('focus', function() {
@@ -167,6 +168,7 @@ function l(x) {
 						},
 
 						collapse: function(makeFocus) {
+							
 							this.removeMod('expanded');
 							this.collection.onChange(this);
 							this.$el
@@ -253,6 +255,16 @@ function l(x) {
 									this.items[i].collapse();
 								}
 							}
+						},
+						isCollapseAllowed: function(header) {
+							var expandedIds = [],
+								i;
+							for (i = 0; i < this.items.length; i++) {
+								if (this.items[i].expanded) {
+									expandedIds.push(this.items[i].id);
+								}
+							}
+							return !(expandedIds.length === 1 && expandedIds.indexOf(header.id) != -1);
 						},
 						_actions: {
 							expand: 'active',

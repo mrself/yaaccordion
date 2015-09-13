@@ -12,7 +12,8 @@ function l(x) {
 				selector: 'fabric'
 			},
 			makeWrap: false,
-			multiselectable: false
+			multiselectable: false,
+			firstExpanded: true
 		},
 		makeClass = function(constructor, prototype) {
 			constructor.prototype = prototype;
@@ -237,7 +238,7 @@ function l(x) {
 								}
 								that.items.push(header);
 							});
-							if (!selected) {
+							if (!selected && this.plugin.options.firstExpanded) {
 								this.active = this.items[0];
 								this.active.expand();
 							}

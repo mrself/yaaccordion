@@ -257,6 +257,7 @@ function l(x) {
 							}
 						},
 						isCollapseAllowed: function(header) {
+							if (this.plugin.options.multiselectable) return true;
 							var expandedIds = [],
 								i;
 							for (i = 0; i < this.items.length; i++) {

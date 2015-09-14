@@ -257,6 +257,30 @@ QUnit.test('not expand first header when active header is expanded by option', f
 	ok($header.last()[0] == pluginObj.e.header.active.$el[0]);
 	ok(!pluginObj.e.header.items[0].expanded && !pluginObj.e.header.items[1].expanded);
 });
+QUnit.test('first header is tabbable when multiselectable is false and no header is expanded', function() {
+	var $accordion = makeFixture({
+		number:3
+	});
+	$fixture.append($accordion);
+	$accordion.yaaccordion({
+		multiselectable: false,
+		firstExpanded: true
+	});
+	ok($accordion.find('.accordion__header').first().attr('tabindex') == 0);
+});
+QUnit.test('expanded header is tabbable when multiselectable is false', function() {
+	var $accordion = makeFixture({
+		number:3
+	});
+	$fixture.append($accordion);
+	$accordion.find('.accordion__header').last().data('yaaccordion', {expanded: true});
+	$accordion.yaaccordion({
+		multiselectable: false,
+		firstExpanded: true
+	});
+	var pluginObj = $accordion.data('plugin_yaaccordion');
+	ok($accordion.find('.accordion__header').last().attr('tabindex') == 0);
+});
 
 QUnit.module('panel');
 QUnit.test('selectors', function() {
@@ -318,7 +342,7 @@ QUnit.test('is not expanded when header has not option expanded', function() {
 	ok(!pluginObj.e.panel.items[1].hasMod('expanded') || !pluginObj.e.panel.items[2].hasMod('expanded'));
 });
 
-QUnit.module('accordion events');
+/*QUnit.module('accordion events');
 QUnit.test('next', function(assert) {
 	var $accordion = makeFixture();
 	var done = assert.async();
@@ -376,7 +400,7 @@ QUnit.test('last', function(assert) {
 		done();
 	});
 	$accordion.trigger('last.yaaccordion');
-});
+});*/
 
 QUnit.module('destroy');
 QUnit.test('header', function() {

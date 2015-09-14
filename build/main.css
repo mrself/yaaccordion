@@ -3,5 +3,3 @@
   border: 1px solid #000; }
 .accordion__panel {
   display: none; }
-  .accordion__panel--expanded {
-    display: block; }

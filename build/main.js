@@ -13,7 +13,8 @@ function l(x) {
 			},
 			makeWrap: false,
 			multiselectable: false,
-			firstExpanded: true
+			firstExpanded: true,
+			slideDuration: 400
 		},
 		makeClass = function(constructor, prototype) {
 			constructor.prototype = prototype;
@@ -136,7 +137,9 @@ function l(x) {
 						makeTabbable: function() {
 							this.$el.attr('tabindex', 0);
 						},
-
+						makeUntabbable: function() {
+							this.$el.attr('tabindex', -1);
+						},
 
 						_initAria: function() {
 							this.$el
@@ -238,9 +241,12 @@ function l(x) {
 								}
 								that.items.push(header);
 							});
-							if (!selected && this.plugin.options.firstExpanded) {
-								this.active = this.items[0];
-								this.active.expand();
+							if (!selected) {
+								if (this.plugin.options.firstExpanded) {
+									this.active = this.items[0];
+									this.active.expand();
+								} else this.items[0].makeTabbable();
+								
 							}
 						},
 
@@ -272,23 +278,22 @@ function l(x) {
 							expand: 'active',
 							focus: 'focused'
 						},
-
-						next: function(type) {
-							type = type || 'active';
-							(this.items[this[this._actions[type]].index + 1] || this.items[0])[type]();
+						focusNext: function() {
+							this.focused.makeUntabbable();
+							(this.items[this.focused.index + 1] || this.items[0]).focus();
 						},
 
-						prev: function(type) {
-							type = type || 'active';
-							(this.items[this[this._actions[type]].index - 1] || this.items[this.items.length - 1])[type]();
+						focusPrev: function() {
+							this.focused.makeUntabbable();
+							(this.items[this.focused.index - 1] || this.items[this.items.length - 1]).focus();
 						},
-						first: function(type) {
-							type = type || 'active';
-							return this.items[0][type]();
+						focusFirst: function() {
+							this.focused.makeUntabbable();
+							return this.items[0].focus();
 						},
-						last: function(type) {
-							type = type || 'active';
-							return this.items[this.items.length - 1][type]();
+						focusLast: function() {
+							this.focused.makeUntabbable();
+							return this.items[this.items.length - 1].focus();
 						},
 
 						toggleFocused: function() {
@@ -333,12 +338,12 @@ function l(x) {
 
 					expand: function() {
 						this.addMod('expanded');
-						this.$el.aria('hidden', false);
+						this.$el.aria('hidden', false).slideDown(this.collection.plugin.options.slideDuration);
 					},
 
 					collapse: function() {
 						this.removeMod('expanded');
-						this.$el.aria('hidden', true);
+						this.$el.aria('hidden', true).slideUp(this.collection.plugin.options.slideDuration);
 					},
 
 					toggle: function(expanded) {
@@ -421,6 +426,7 @@ function l(x) {
 				.removeData('plugin_' + pluginName);
 		},
 
+		
 
 		_initEls: function() {
 			this.e = {};
@@ -443,20 +449,20 @@ function l(x) {
 				switch (evt.keyCode) {
 					case keyCodes.DOWN:
 					case keyCodes.RIGHT:
-						self.e.header.next('focus');
+						self.e.header.focusNext();
 						return false;
 
 					case keyCodes.UP:
 					case keyCodes.LEFT:
-						self.e.header.prev('focus');
+						self.e.header.focusPrev();
 						return false;
 
 					case keyCodes.HOME:
-						self.e.header.first('focus');
+						self.e.header.focusFirst();
 						return false;
 
 					case keyCodes.END:
-						self.e.header.last('focus');
+						self.e.header.focusLast();
 						return false;
 
 					case keyCodes.ENTER:
@@ -466,13 +472,13 @@ function l(x) {
 				}
 			};
 
-			// api works properly only if option multiselectable is enabled
-			$.each(['next', 'prev', 'first', 'last'], function(index, el) {
-				events[self.makeEventName(el)] = function() {
-					self.e.header[el]('expand');
-					return false;
-				};
-			});
+			// were custom triggers. disabled for now
+			// $.each(['next', 'prev', 'first', 'last'], function(index, el) {
+			// 	events[self.makeEventName(el)] = function() {
+			// 		self.e.header[el]('expand');
+			// 		return false;
+			// 	};
+			// });
 			this.$el.on(events);
 		}
 	}, $.Del);

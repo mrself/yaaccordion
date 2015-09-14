@@ -426,7 +426,9 @@ function l(x) {
 				.removeData('plugin_' + pluginName);
 		},
 
-		
+		setOptions: function(options) {
+			$.extend(this.options, options);
+		},
 
 		_initEls: function() {
 			this.e = {};

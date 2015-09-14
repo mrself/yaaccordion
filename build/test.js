@@ -454,3 +454,22 @@ QUnit.test('general', function() {
 	ok(!$._data(this, "events") || (Object.keys(events).length == 1) && events.test !== undefined);
 	ok(!$accordion.data('plugin_yaaccordion'));
 });
+
+QUnit.test('#setOptions (multiselectable set)', function(assert) {
+	var done = assert.async();
+	var $accordion = makeFixture();
+	$fixture.append($accordion);
+	$accordion.yaaccordion({
+		multiselectable: false,
+		firstExpanded: true
+	});
+	var pluginObj = $accordion.data('plugin_yaaccordion');
+	pluginObj.setOptions({multiselectable: true});
+	$accordion.find('.accordion__header').eq(1).trigger('expand');
+	setTimeout(function() {
+		ok($accordion.find('.accordion__header').eq(0).hasClass('accordion__header--expanded'));
+		ok($accordion.find('.accordion__header').eq(1).hasClass('accordion__header--expanded'));
+		ok(!$accordion.find('.accordion__header').eq(2).hasClass('accordion__header--expanded'));
+		done();
+	}, pluginObj.options.slideDuration + 10);
+});

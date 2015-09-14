@@ -213,9 +213,7 @@ function l(x) {
 						_name: 'header',
 						init: function() {
 							this.dName = this.plugin.makeName(this._name);
-							this.initDel({
-								namespace: pluginName
-							});
+							this.initDel({namespace: pluginName});
 							this.$el = this.options.selector == 'fabric' ? 
 								this.plugin.find(this._name) : 
 								this.plugin.$el.find(this.options.selector).addClass(this.dName);

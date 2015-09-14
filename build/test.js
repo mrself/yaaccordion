@@ -138,7 +138,6 @@ QUnit.test('events', function(assert) {
 		ok($header.attr('tabindex') == 0, 'tabindex == 0');
 		$accordion.find('.accordion__header').slice(1).each(function(index, el) {
 			ok($(this).attr('tabindex') == -1);
-			// ok($header.is(':focus'), 'header has focus');
 		});
 	}
 	$header.on('expand.yaaccordion', function() {
@@ -152,7 +151,7 @@ QUnit.test('events', function(assert) {
 		done2();
 	});
 	var pluginObj = $accordion.data('plugin_yaaccordion');
-	ok(pluginObj.e.header.makeEventName('expand') == 'expand.yaaccordion', 'valid event name');
+	ok(pluginObj.e.header.eventName('expand') == 'expand.yaaccordion', 'valid event name');
 	$header.trigger('expand.yaaccordion');
 	$header.trigger('collapse.yaaccordion');
 });

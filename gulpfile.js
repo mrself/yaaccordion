@@ -5,7 +5,12 @@ var gulp = require('gulp'),
 	watch = require('gulp-watch'),
 	uglify = require('gulp-uglify'),
 	jshint = require('gulp-jshint'),
-	rename = require('gulp-rename');
+	rename = require('gulp-rename'),
+	browserSync = require('browser-sync'),
+	source = require('vinyl-source-stream'),
+	watchify = require('watchify'),
+	browserify = require('browserify'),
+	bundleLogger = require('./gulp-utils/bundleLogger');
 
 var src = './src/';
 var build = './build/';
@@ -25,11 +30,41 @@ var config = {
 	}
 };
 
-gulp.task('js', function() {
-	return gulp.src(src + 'js/main.js')
-		.pipe(jshint())
-		.pipe(gulp.dest(build));
+
+var outputFile = 'app.js';
+gulp.task('watchify', function() {
+	var bundler = browserify({
+			cache: {}, packageCache: {}, fullPaths: false,
+			entries: './src/js/main.js',
+			dest: './build/' + outputFile
+		}),
+		watcher = watchify(bundler),
+		bundle = function() {
+			bundleLogger.start(outputFile);
+			return watcher
+				.bundle()
+				.pipe(source(outputFile))
+				.pipe(gulp.dest('./build'))
+				.on('end', function() {
+					bundleLogger.end(outputFile);
+					setTimeout(browserSync.reload, 1500);
+				});
+		};
+
+	watcher.on('update', bundle);
+	bundleLogger.watch(outputFile);
+	return bundle();
+
 });
+gulp.task('browser-sync', function() {
+	browserSync.init({
+		server: {
+			baseDir: './build'
+		},
+		files: ['./build/*.html', 'test.*']
+	});
+});
+
 
 gulp.task('css', function() {
 	return gulp.src(src + 'sass/main.scss')
@@ -38,12 +73,9 @@ gulp.task('css', function() {
 });
 
 gulp.task('watch', function() {
-	watch(config.src.js, function() {
-		gulp.start('js');
-	});
 	watch(config.src.css, function() {
 		gulp.start('css');
 	});
 });
 
-gulp.task('default', ['js', 'css', 'watch']);
+gulp.task('default', ['watchify', 'css', 'watch', 'browser-sync']);

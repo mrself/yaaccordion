@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "devDependencies": {
     "bower": "^1.4.1",
-    "browser-sync": "^2.5.3",
+    "browser-sync": "^2.9.3",
+    "browserify": "^11.1.0",
     "glob": "~3.2.3",
     "growl": "~1.7.0",
     "gulp": "^3.8.11",
@@ -16,7 +17,12 @@
     "gulp-ruby-sass": "^1.0.1",
     "gulp-sass": "^1.3.3",
     "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.6",
     "gulp-watch": "^4.2.4",
+    "pretty-hrtime": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.4.0",
+    "ya-del": "git+https://github.com/mrself/ya-del.git#v1.0.1",
     "yargs": "^3.10.0"
   }
 }

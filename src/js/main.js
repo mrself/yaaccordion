@@ -69,8 +69,7 @@ var keyCodes = require('./key-codes');
 			var self = this;
 			this.$el.on(this.eventName('click'), '.' + this._headerDName, function() {
 				self.getById(this.id).toggle();
-			});
-			this.$el.on(this.eventName('keydown'), function(evt) {
+			}).on(this.eventName('keydown'), '.' + this._headerDName, function(evt) {
 				switch (evt.which) {
 					case keyCodes.DOWN:
 					case keyCodes.RIGHT:
@@ -92,7 +91,7 @@ var keyCodes = require('./key-codes');
 
 					case keyCodes.ENTER:
 					case keyCodes.SPACE:
-						self.toggleTabbable();
+						self.toggle(this.id);
 						return;
 				}
 			});
@@ -184,6 +183,10 @@ var keyCodes = require('./key-codes');
 			this.getById(this._tabbable).toggle();
 		},
 
+		toggle: function(id) {
+			this.getById(id).toggle();
+		},
+
 		/**
 		 * Add item
 		 * @param {HeaderItem} item
@@ -250,16 +253,7 @@ var keyCodes = require('./key-codes');
 		 */
 		getById: function(id) {
 			return this._items[id];
-		},
-
-		// toggle: function() {
-		// 	var id;
-		// 	for (id in this._items) {
-		// 		this._items[id].toogle();
-		// 	}
-		// },
-
-
+		}
 	}, Del);
 
 	Plugin.init = function(el, options) {

@@ -141,12 +141,15 @@ Header.prototype = {
 	 */
 	toggle: function(state) {
 		var self = this;
+		// l(this._state)
 		if (typeof state == 'undefined') {
 			this._state = !this._state;
 		} else {
 			if (state == this._state) return;
 			this._state = state;
 		}
+		// l(this._state)
+		// l(this.$el)
 		this._toggleArea(this._state);
 		this.panel.toggle(this._state, function() {
 			self.events.trigger('expand');

@@ -66,45 +66,61 @@ describe('Init', function() {
 		it('next', function() {
 			var e = $.Event('keydown');
 			e.which = keyCodes.RIGHT;
-			this.$el.trigger(e);
+			this.inst.$header.first().trigger(e);
 			assert(this.inst.get(1).getId() == this.inst._tabbable);
 		});
 
 		it('next twice', function() {
 			var e = $.Event('keydown');
 			e.which = keyCodes.RIGHT;
-			this.$el.trigger(e);
-			this.$el.trigger(e);
+			this.inst.$header.first().trigger(e);
+			this.inst.$header.eq(1).trigger(e);
 			assert(this.inst.get(2).getId() == this.inst._tabbable);
 		});
 
 		it('prev', function() {
 			var e = $.Event('keydown');
 			e.which = keyCodes.LEFT;
-			this.$el.trigger(e);
+			this.inst.$header.first().trigger(e);
 			assert(this.inst.last().getId() == this.inst._tabbable);
 		});
 
 		it('toggle on space / enter', function() {
-			var focused = this.inst.getById(this.inst._tabbable);
-			var state = focused.getState();
+			var header = this.inst.get(2);
+			var state = header.getState();
 			var e = $.Event('keydown');
 			e.which = keyCodes.ENTER;
-			this.$el.trigger(e);
-			assert(focused.getState() !== state);
+			header.$el.trigger(e);
+			assert(header.getState() !== state);
 		});
 
-		it('home', function() {
+		it('home click on focus is on first header', function() {
+			var firstHeader = this.inst.first();
 			var e = $.Event('keydown');
 			e.which = keyCodes.HOME;
-			this.$el.trigger(e);
+			firstHeader.$el.trigger(e);
+			assert(firstHeader.getId() == this.inst.getById(this.inst._tabbable).getId());
+		});
+		it('home click on focus is not on first header', function() {
+			var header = this.inst.get(3);
+			var e = $.Event('keydown');
+			e.which = keyCodes.HOME;
+			header.$el.trigger(e);
 			assert(this.inst.first().getId() == this.inst.getById(this.inst._tabbable).getId());
 		});
 
-		it('end', function() {
+		it('end click when focus is on last header', function() {
+			var header = this.inst.last();
 			var e = $.Event('keydown');
 			e.which = keyCodes.END;
-			this.$el.trigger(e);
+			header.$el.trigger(e);
+			assert(header.getId() == this.inst.getById(this.inst._tabbable).getId());
+		});
+		it('end click when focus is not on last header', function() {
+			var header = this.inst.get(3);
+			var e = $.Event('keydown');
+			e.which = keyCodes.END;
+			header.$el.trigger(e);
 			assert(this.inst.last().getId() == this.inst.getById(this.inst._tabbable).getId());
 		});
 

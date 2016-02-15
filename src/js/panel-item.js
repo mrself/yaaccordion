@@ -19,6 +19,9 @@ Module.prototype = {
 			this._id = id;
 		}
 	},
+	setHeaderId: function(id) {
+		this._headerId = id;
+	},
 	getId: function() {
 		return this._id;
 	},
@@ -37,10 +40,9 @@ Module.prototype = {
 		}
 	},
 };
-Module.init = function($el, headerId, dName) {
+Module.init = function($el, dName) {
 	var inst = new Module();
 	inst.$el = $el;
-	inst._headerId = headerId;
 	inst.dName = dName;
 	inst.init();
 	return inst;

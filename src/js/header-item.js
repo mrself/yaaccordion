@@ -15,13 +15,18 @@ Module.prototype = {
 	init: function(panelDName) {
 		this._panelDName = panelDName;
 		this.setId();
-		this.panel = Panel.init(this._findPanelEl(), this.getId(), this._panelDName);
+		this.panel = Panel.init(this._findPanelEl(), this._panelDName);
+		this.panel.setHeaderId(this.getId());
 		this._defineState();
 		this._initArea();
 	},
 
 	_defineState: function() {
-		this._state = this.$el.data(utils.dataName('opened')) || this.options.defaultState;
+		this._state = this.options.defaultState;
+		switch (this.$el.attr('aria-expanded')) {
+			case 'true': return this._state = true;
+			case 'false': return this._state = false;
+		}
 	},
 
 	setId: function() {
@@ -40,7 +45,10 @@ Module.prototype = {
 	},
 
 	_initArea: function() {
-		this.$el.attr('role', 'tab').attr('aria-controls', this.panel.getId()).attr('tabindex', -1);
+		this.$el
+			.attr('role', 'tab')
+			.attr('aria-controls', this.panel.getId())
+			.attr('tabindex', -1);
 		this._toggleArea(this._state);
 	},
 

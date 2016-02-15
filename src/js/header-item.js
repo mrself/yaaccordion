@@ -36,6 +36,7 @@ function Header () {
 	this.events = PubSub.makeInst();
 }
 Header.prototype = {
+	constructor: Header,
 	_name: 'header',
 	init: function(panelDName) {
 		this._panelDName = panelDName;

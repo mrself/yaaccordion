@@ -750,13 +750,13 @@ Panel.prototype = {
  * @return {Panel}
  */
 Panel.init = function($el, dName) {
-	var inst = new Module();
+	var inst = new Panel();
 	inst.$el = $el;
 	inst.dName = dName;
 	inst.init();
 	return inst;
 };
-module.exports = Module;
+module.exports = Panel;
 },{"./utils":7}],6:[function(require,module,exports){
 /**
  * Utils

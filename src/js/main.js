@@ -213,7 +213,9 @@ var keyCodes = require('./key-codes');
 		 * @return {HeaderItem}
 		 */
 		makeItem: function(el) {
-			return HeaderItem.init(el, this.options, this._panelDName);
+			var item = HeaderItem.make(el, this.options, this._panelDName);
+			item.init(this._panelDName);
+			return item;
 		},
 
 		/**

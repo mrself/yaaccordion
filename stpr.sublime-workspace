@@ -5,7 +5,35 @@
 		[
 			[
 				"ya",
-				"yaaccordion"
+				"yaaccordion	(tests.js)"
+			],
+			[
+				"accordion_",
+				"accordion__header	(tests.js)"
+			],
+			[
+				"makef",
+				"makeFocused	(main.js)"
+			],
+			[
+				"heE",
+				"headerEl"
+			],
+			[
+				"acc",
+				"accordion__panel"
+			],
+			[
+				"accordion",
+				"accordion__header"
+			],
+			[
+				"firsE",
+				"firstExpanded"
+			],
+			[
+				"He",
+				"HeaderItem"
 			],
 			[
 				"HC",
@@ -486,92 +514,48 @@
 			[
 				"bcP",
 				"bcParams"
-			],
-			[
-				"url",
-				"urlOptions"
-			],
-			[
-				"bg",
-				"background"
-			],
-			[
-				"qu",
-				"query"
-			],
-			[
-				"category",
-				"category-id"
-			],
-			[
-				"typ",
-				"typeof"
-			],
-			[
-				"estim",
-				"estimatedTrigger"
-			],
-			[
-				"expa",
-				"expanded"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "tests/tests.js",
-			"settings":
-			{
-				"buffer_size": 1819,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "src/js/main.js",
 			"settings":
 			{
-				"buffer_size": 2540,
+				"buffer_size": 6146,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "src/js/header/item.js",
+			"file": "tests/tests.js",
 			"settings":
 			{
-				"buffer_size": 1420,
+				"buffer_size": 7031,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "src/js/panel/item.js",
+			"file": "src/js/header-item.js",
 			"settings":
 			{
-				"buffer_size": 368,
+				"buffer_size": 2214,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "tests/index.html",
+			"file": "src/js/panel-item.js",
 			"settings":
 			{
-				"buffer_size": 885,
+				"buffer_size": 956,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "demo/index.html",
+			"file": "src/sass/main.scss",
 			"settings":
 			{
-				"buffer_size": 1044,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "build/index.html",
-			"settings":
-			{
-				"buffer_size": 1806,
+				"buffer_size": 213,
 				"line_ending": "Windows"
 			}
 		}
@@ -729,16 +713,31 @@
 	],
 	"file_history":
 	[
-		"/D/myprojects/dev/js/plugins/accordion/src/js/utils.js",
+		"/D/myprojects/dev/js/plugins/accordion/tests/tests.js",
+		"/D/myprojects/dev/js/plugins/accordion/tests/demo.html",
+		"/D/myprojects/dev/js/plugins/accordion/src/js/main_old.js",
+		"/D/myprojects/dev/js/plugins/accordion/src/js/panel.js",
+		"/D/myprojects/dev/js/plugins/accordion/src/js/panel/item.js",
+		"/D/myprojects/dev/js/plugins/accordion/src/js/header/item.js",
 		"/D/myprojects/dev/js/plugins/accordion/src/js/header/collection.js",
+		"/D/myprojects/dev/js/plugins/accordion/src/js/key-codes.js",
+		"/D/myprojects/dev/js/plugins/accordion/tests/main.css",
+		"/D/myprojects/dev/js/ya-del/del.js",
+		"/D/myprojects/dev/js/plugins/accordion/gulpfile.js",
+		"/D/myprojects/dev/js/plugins/accordion/src/sass/main.scss",
+		"/D/myprojects/dev/js/plugins/accordion/tests/index.html",
+		"/D/myprojects/dev/js/plugins/accordion/build/index.html",
+		"/D/myprojects/dev/js/plugins/accordion/demo/index.html",
+		"/D/myprojects/dev/makeup/src/js/portfolioCollection.js",
+		"/D/myprojects/dev/makeup/src/js/portfolio.js",
+		"/D/myprojects/dev/js/plugins/accordion/node_modules/ya-del/del.js",
+		"/D/myprojects/dev/js/ya-del/test/test.js",
+		"/D/myprojects/dev/js/plugins/accordion/src/js/utils.js",
 		"/D/myprojects/dev/js/plugins/accordion/package.json",
 		"/D/myprojects/dev/js/vendor-demo/c2-accordion/index.html",
 		"/D/myprojects/dev/js/vendor-demo/c2-accordion/js.js",
 		"/D/myprojects/bc/solarskylights/template/Panels/ProductDetails.html",
-		"/D/myprojects/dev/js/plugins/accordion/src/js/panel/item.js",
-		"/D/myprojects/dev/js/plugins/accordion/src/js/header/item.js",
 		"/D/myprojects/dev/js/vendor-demo/c2-accordion/index.htm",
-		"/D/myprojects/dev/js/plugins/accordion/src/js/main_old.js",
 		"/D/myprojects/dev/js/perfomence/mybench/test.js",
 		"/D/myprojects/dev/js/perfomence/benchmarkjs/node_modules/benchmark/benchmark.js",
 		"/D/myprojects/dev/js/perfomence/benchmarkjs/src/js/app.js",
@@ -751,13 +750,10 @@
 		"/D/myprojects/dev/js/plugins/accordion/src/js/wrap/collection.js",
 		"/D/myprojects/dev/js/plugins/accordion/src/js/header/.js",
 		"/D/myprojects/dev/js/plugins/accordion/tests/nicolas.html",
-		"/D/myprojects/dev/js/plugins/accordion/src/js/panel.js",
 		"/D/myprojects/dev/js/plugins/accordion/src/js/header.js",
 		"/D/myprojects/dev/js/plugins/accordion/src/js/item.js",
 		"/D/myprojects/dev/js/plugins/accordion/src/js/item-collection.js",
-		"/D/myprojects/dev/js/plugins/accordion/gulpfile.js",
 		"/E/моє/документи/sapp/tel",
-		"/D/myprojects/dev/js/ya-del/test/test.js",
 		"/D/myprojects/dev/js/plugins/accordion/build/test.js",
 		"/D/myprojects/dev/js/plugins/accordion/tests/app.js",
 		"/D/myprojects/dev/js/plugins/accordion/build/test.html",
@@ -844,19 +840,7 @@
 		"/D/myprojects/bc/masq-gulp/template/Panels/QuickViewContent.html",
 		"/D/myprojects/bc/masq-gulp/template/Panels/ChooseBillingAddress.html",
 		"/D/myprojects/bc/masq-gulp/src/js/libs/is-touch.js",
-		"/D/myprojects/bc/solarskylights/tasks/04-02-2015.",
-		"/E/моє/документи/sapp/fin.json",
-		"/D/myprojects/bc/masq-gulp/src/scss/modules/_category.scss",
-		"/D/myprojects/bc/masq-gulp/src/scss/modules/_cart.scss",
-		"/D/myprojects/bc/masq-gulp/template/Panels/SideCurrencySelector.html",
-		"/D/myprojects/bc/masq-gulp/template/Snippets/SubCategories.html",
-		"/D/myprojects/bc/masq-gulp/template/Panels/SearchPage.html",
-		"/D/myprojects/bc/masq-gulp/template/Panels/CategoryProductListing.html",
-		"/D/myprojects/bc/masq-gulp/src-old/js/bc/category.js",
-		"/C/Users/Lightman/AppData/Local/Temp/_tc/_custom/js/script.js",
-		"/D/my job!/bigcommerece/сергій/new site/беккапс/live site BC/custom_template_i9yiyyy_Blueprint_20150115-1718/_custom/js/lib.js",
-		"/D/my job!/bigcommerece/сергій/new site/беккапс/live site BC/custom_template_i9yiyyy_Blueprint_20150115-1718/_custom/js/script.js",
-		"/D/myprojects/bc/dev/shop/src/js/modules/category.js"
+		"/D/myprojects/bc/solarskylights/tasks/04-02-2015."
 	],
 	"find":
 	{
@@ -874,6 +858,70 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"../",
+			"focusLast",
+			"jtem",
+			"first",
+			"toggleFocused",
+			"_focused",
+			"id",
+			"only",
+			"_items[this._focused]",
+			"first",
+			"last",
+			"LEFT",
+			"first",
+			"makeFocused",
+			"makeUnFocused",
+			"makeUnTabbable",
+			"false",
+			"this",
+			"obj",
+			"return false;",
+			"this",
+			"this.",
+			"keyCode",
+			"e.header",
+			"focusNext",
+			"state",
+			"this",
+			"fixtureOptions",
+			"options",
+			"fixture",
+			"this",
+			"fixtureOptions",
+			"options",
+			"dName",
+			"panelDName",
+			"slow",
+			"makeUnFocused",
+			"ev",
+			"item",
+			"this",
+			"toggle",
+			"('",
+			"this",
+			"PubSub",
+			"header",
+			"panelDName",
+			"headerId",
+			"true",
+			"state",
+			"opened",
+			"el",
+			"dName",
+			"{\n",
+			"_makeHeaderSelector",
+			"namespace",
+			"optins",
+			"true",
+			"expanded",
+			"hidden",
+			"type",
+			"header",
+			"false",
+			"expanded",
+			"false",
 			"elId",
 			"makeUid",
 			"inst",
@@ -937,71 +985,7 @@
 			"html",
 			"script",
 			"scriptEl",
-			"imagesScript",
-			"}\n",
-			"= func",
-			"this.",
-			"template",
-			"backImage",
-			"colorOptions",
-			"attrs",
-			"countInited",
-			"color",
-			"div",
-			"key",
-			"attrName",
-			"center",
-			"el",
-			"hide",
-			"show",
-			"COLLAGE",
-			"width",
-			"size",
-			"width",
-			"height",
-			"class",
-			"el",
-			"COLLAGE",
-			"dNmame",
-			"undefined",
-			"Arimo",
-			"369992381",
-			"prs__i__colors",
-			"this",
-			"run",
-			"item",
-			"loadImage",
-			"inserImage",
-			"width",
-			"large",
-			"1280",
-			"self",
-			"function",
-			"$this",
-			"BackImagesAdapter",
-			"showColors",
-			"953246297",
-			"min",
-			"block",
-			"js",
-			"html",
-			"url",
-			"imageUrl",
-			"id",
-			"imageUrl",
-			"html",
-			"options",
-			"showBackImages",
-			"product",
-			"attr",
-			"optionName",
-			"label",
-			"checkIfOne",
-			"clookAccordion",
-			"kk48Benitrix",
-			"mrself",
-			"magent",
-			"mrself"
+			"imagesScript"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1009,6 +993,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"_tabbable"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -1019,55 +1004,85 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "tests/tests.js",
+					"file": "src/js/main.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1819,
+						"buffer_size": 6146,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1746,
-								1746
+								2334,
+								2334
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"function_name_status_row": 69,
+							"function_name_status_row": 4,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1261.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "src/js/main.js",
+					"file": "tests/tests.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2540,
+						"buffer_size": 7031,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								46,
-								46
+								941,
+								941
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 45,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1313.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 0,
+					"file": "src/js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6146,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								81,
+								81
 							]
 						],
 						"settings":
@@ -1081,92 +1096,31 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "src/js/header/item.js",
+					"file": "src/js/header-item.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1420,
+						"buffer_size": 2214,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1175,
-								1175
+								25,
+								25
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"function_name_status_row": 57,
+							"function_name_status_row": 3,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 117.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/js/panel/item.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 368,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								225,
-								225
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"function_name_status_row": 10,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "tests/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 885,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								858,
-								858
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"function_name_status_row": 20,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -1177,63 +1131,64 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "demo/index.html",
+					"buffer": 3,
+					"file": "src/js/panel-item.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1044,
+						"buffer_size": 956,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								246,
-								246
+								21,
+								21
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"function_name_status_row": 8,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"function_name_status_row": 0,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/sass/main.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 213,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								152,
+								152
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 11,
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "build/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1806,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 0,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 221.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -1289,6 +1244,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"gu",
+				"gulpfile.js"
+			],
+			[
+				"ut",
+				"src\\js\\utils.js"
+			],
 			[
 				"pa",
 				"package.json"
@@ -1792,14 +1755,6 @@
 			[
 				"report-error",
 				"magic\\shop\\snippets\\report-error.liquid"
-			],
-			[
-				"p",
-				"magic\\shop\\templates\\product.liquid"
-			],
-			[
-				"product-listing",
-				"magic\\shop\\snippets\\product-listing.liquid"
 			]
 		],
 		"width": 0.0

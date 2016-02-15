@@ -11,9 +11,9 @@ function Module () {
 	this.events = PubSub.makeInst();
 }
 Module.prototype = {
-	init: function() {
-		this._name = this.options.names.header;
-		// this.panelDName = this.options.names.panelDName;
+	_name: 'header',
+	init: function(panelDName) {
+		this._panelDName = panelDName;
 		this.setId();
 		this.panel = Panel.init(this._findPanelEl(), this.getId(), this._panelDName);
 		this._defineState();
@@ -96,12 +96,11 @@ Module.prototype = {
 		return this._state;
 	},
 };
-Module.init = function(el, options, panelDName) {
+Module.make = function(el, options) {
 	var inst = new Module();
 	inst.el = el;
 	inst.$el = $(el);
 	inst.options = options;
-	inst._panelDName = panelDName;
 	inst.init();
 	return inst;
 };

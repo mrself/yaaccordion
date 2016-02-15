@@ -1,16 +1,41 @@
 /**
  * Header
- * Item
+ * class
  */
 
-var Panel = require('./panel-item');
-var utils = require('./utils');
-var PubSub = require('./pub-sub');
+var Panel = require('./panel-item'),
+	utils = require('./utils'),
+	PubSub = require('./pub-sub');
 
-function Module () {
+
+/**
+ * Represents accordion header
+ * @constructor
+ */
+function Header () {
+	/**
+	 * State of header
+	 * True - is expanded
+	 * False - is contacted
+	 * @type {boolean}
+	 * @private
+	 */
+	this._state = null;
+
+	/**
+	 * Store to header element id
+	 * @type {string}
+	 * @private
+	 */
+	this._id = null;
+
+	/**
+	 * Observer instance for subscribing and triggering events
+	 * @type {PubSub}
+	 */
 	this.events = PubSub.makeInst();
 }
-Module.prototype = {
+Header.prototype = {
 	_name: 'header',
 	init: function(panelDName) {
 		this._panelDName = panelDName;
@@ -21,6 +46,10 @@ Module.prototype = {
 		this._initArea();
 	},
 
+	/**
+	 * Define state of header by option or attr
+	 * @return {void}
+	 */
 	_defineState: function() {
 		this._state = this.options.defaultState;
 		switch (this.$el.attr('aria-expanded')) {
@@ -29,6 +58,9 @@ Module.prototype = {
 		}
 	},
 
+	/**
+	 * Set id property
+	 */
 	setId: function() {
 		var id = this.$el[0].id;
 		if (!id) {
@@ -40,10 +72,19 @@ Module.prototype = {
 		}
 	},
 
+	/**
+	 * Get id property
+	 * @return {string} Id
+	 */
 	getId: function() {
 		return this._id;
 	},
 
+	/**
+	 * Init area attributes for element
+	 * @return {void}
+	 * @private
+	 */
 	_initArea: function() {
 		this.$el
 			.attr('role', 'tab')
@@ -52,22 +93,42 @@ Module.prototype = {
 		this._toggleArea(this._state);
 	},
 
+	/**
+	 * Expand header
+	 * @return {void}
+	 */
 	expand: function() {
 		this.toggle(true);
 	},
 
+	/**
+	 * Contract header
+	 * @return {void}
+	 */
 	contract: function() {
 		this.toggle(false);
 	},
 
+	/**
+	 * Make header tabbable
+	 * @return {void}
+	 */
 	makeTabbable: function() {
 		this.$el.attr('tabindex', 0);
 	},
 
+	/**
+	 * Make headeer untabbable
+	 * @return {void}
+	 */
 	makeUnTabbable: function() {
 		this.$el.attr('tabindex', -1);
 	},
 
+	/**
+	 * Focus header
+	 * @return {void}
+	 */
 	focus: function() {
 		this.$el.attr('tabindex', 0).trigger('focus');
 	},
@@ -91,25 +152,47 @@ Module.prototype = {
 		});
 	},
 
+	/**
+	 * Toggle area attributes on header and panel
+	 * @return {void}
+	 * @private
+	 */
 	_toggleArea: function() {
 		this.$el.attr('aria-expanded', this._state).attr('aria-selected', this._state);
 		this.panel.toggleArea(this._state);
 	},
 
+	/**
+	 * Find panel element
+	 * @return {jQuery}
+	 * @private
+	 */
 	_findPanelEl: function() {
 		return this.$el.next();
 	},
 
+	/**
+	 * Get state property
+	 * @return {boolean}
+	 * @private
+	 */
 	getState: function() {
 		return this._state;
 	},
 };
-Module.make = function(el, options) {
-	var inst = new Module();
+
+/**
+ * Make istance object
+ * @param  {Element} el     Header element
+ * @param  {object} options All plugin options
+ * @return {Header}
+ */
+Header.make = function(el, options) {
+	var inst = new Header();
 	inst.el = el;
 	inst.$el = $(el);
 	inst.options = options;
 	inst.init();
 	return inst;
 };
-module.exports = Module;
+module.exports = Header;

@@ -523,7 +523,7 @@
 			"file": "src/js/main.js",
 			"settings":
 			{
-				"buffer_size": 6146,
+				"buffer_size": 6785,
 				"line_ending": "Windows"
 			}
 		},
@@ -531,7 +531,15 @@
 			"file": "tests/tests.js",
 			"settings":
 			{
-				"buffer_size": 7031,
+				"buffer_size": 9041,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "var mainInput = document.getElementById(\"mainInput\");\nvar totalTodo = document.getElementById('totalTodos');\n// Set this to give unique id on each todo list\nvar todoid = '0';\nvar todoDone = '0';\n\n// Add todos - Trigger on Enter\nmainInput.addEventListener(\"keyup\", function(e){\n    var key = e.which || e.keyCode;\n    if (key === 13) {\n        if (mainInput.value === ''){\n            // If empty value entered\n            //console.log('Empty value');\n            return false;\n        }else{\n            // If value passed\n            todoid++;\n            //console.log(todoid);\n            // Create element to hold new value\n            var node = document.createElement(\"LI\");\n            \n            // Add data attribute on li\n            node.setAttribute('id', 'todo_' + todoid);\n            \n            // Greate i element - Check icon\n            var nodeTwo = document.createElement(\"I\");\n            // Add i into li element\n            node.appendChild(nodeTwo);\n            // Add Classes into i\n            nodeTwo.className = 'ion-ios-circle-outline';\n            nodeTwo.setAttribute('id', 'child_todo_' + todoid);\n\n            \n            // Save textnode from the value\n            var textnode = document.createTextNode(mainInput.value);\n            // Add that into li\n            node.appendChild(textnode);\n            \n            \n            // Greate i element - Remove icon\n            var nodeThree = document.createElement(\"I\");\n            // Add i into li element\n            node.appendChild(nodeThree);\n            // Add Classes into i\n            nodeThree.className = 'ion-ios-close-empty';\n            nodeThree.setAttribute('id', 'close_child_todo_' + todoid);\n            \n            // Add new list on the main div\n            document.getElementById('todoList').appendChild(node);\n            // Clear input\n            mainInput.value = '';\n            //console.log(mainInput.value);\n            \n            // Update total todos\n            \n            totalMsg(todoid, todoDone);\n            //console.log('Total ' + todoid + ' todos to do');\n        }\n    }\n});\n\n// Fuction to show total message\nfunction totalMsg(todoid, todoDone){\n    if(todoid === 1){\n        return totalTodos.innerHTML = '<b>' + todoid + '</b> thing to do / <b>' + todoDone + '</b> completed';\n    }else{\n        return totalTodos.innerHTML = '<b>' + todoid + '</b> things to do / <b>' + todoDone + '</b> completed';\n    }\n}\n\n// Function to check Class name on elements\nfunction hasClass(element, cls) {\n    return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;\n}\n\n/* Completed todo\n** http://jsfiddle.net/founddrama/ggMUn/\n** http://stackoverflow.com/questions/646628/how-to-check-if-a-string-startswith-another-string\n*/\ndocument.querySelector('body').addEventListener('click', function(event) {\n    if (event.target.id.startsWith(\"child_todo_\")) {\n        // Get clicked item's ID\n        var todoClicked = event.target.id;\n        //console.log(todoClicked);\n        var todoClickedElement = document.getElementById(todoClicked);\n        todoClickedElement.classList.toggle('completed');\n        \n        var parent_tce = todoClickedElement.parentElement.id;\n        //console.log(parent_tce);\n        var completedList = document.getElementById(parent_tce);\n        completedList.classList.toggle('completedlist');\n        \n        // if todoClickedElement has completed class add or substract\n        //console.log(hasClass(todoClickedElement, 'completed'));\n        if(hasClass(completedList, 'completedlist')){\n            todoDone++;\n            totalMsg(todoid, todoDone);\n        }else{\n            todoDone--;\n            totalMsg(todoid, todoDone);\n        }\n    }\n});\n\n// Remove todo\ndocument.querySelector('body').addEventListener('click', function(event) {\n    // Select all elements have ID starts with \"child_todo_close_\"\n    if (event.target.id.startsWith(\"close_child_todo_\")) {\n        var closeClicked = event.target.id;\n        //console.log(closeClicked);\n        var closeClickedElement = document.getElementById(closeClicked);\n        var parent_cce = closeClickedElement.parentElement.id;\n        \n        // Update total todo number\n        var willBeRemoved = document.getElementById(parent_cce);\n        todoid--;\n        if(todoDone != 0 && hasClass(willBeRemoved, 'completedlist')){\n            todoDone--;\n        }\n        if(todoid === 0){\n            totalTodos.innerHTML = '';\n        }else{\n            totalMsg(todoid, todoDone);\n        }\n        \n       // Remove clicked todo list\n        document.getElementById(parent_cce).remove();\n    }\n});",
+			"settings":
+			{
+				"buffer_size": 4628,
 				"line_ending": "Windows"
 			}
 		},
@@ -539,7 +547,7 @@
 			"file": "src/js/header-item.js",
 			"settings":
 			{
-				"buffer_size": 2214,
+				"buffer_size": 3509,
 				"line_ending": "Windows"
 			}
 		},
@@ -547,7 +555,7 @@
 			"file": "src/js/panel-item.js",
 			"settings":
 			{
-				"buffer_size": 956,
+				"buffer_size": 1690,
 				"line_ending": "Windows"
 			}
 		},
@@ -558,14 +566,26 @@
 				"buffer_size": 213,
 				"line_ending": "Windows"
 			}
+		},
+		{
+			"file": "tests/demo.html",
+			"settings":
+			{
+				"buffer_size": 890,
+				"line_ending": "Windows"
+			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 196.0,
 		"selected_items":
 		[
+			[
+				"ss js",
+				"Set Syntax: JavaScript"
+			],
 			[
 				"ss ht",
 				"Set Syntax: HTML"
@@ -858,6 +878,24 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"todoList",
+			"key",
+			"document.getElementById",
+			"getElementById",
+			"expand",
+			"this",
+			"focus",
+			"firstHeader",
+			"header",
+			"type",
+			"Module",
+			"var ",
+			";",
+			"true",
+			"stateAttr",
+			"options",
+			"inst",
+			"panelDName",
 			"../",
 			"focusLast",
 			"jtem",
@@ -967,25 +1005,7 @@
 			"dims",
 			"resizeTimeout",
 			"())",
-			"setAreaDims",
-			"currentWidth",
-			"dims",
-			"currentWidth",
-			"lastWidth",
-			"cusCarePage",
-			"chat_popup",
-			"sFilter",
-			"blogPosts",
-			"blogposts",
-			"accordion",
-			"footerAccordion",
-			"accordion",
-			"categoryGrid",
-			"topMenu_dropdown",
-			"html",
-			"script",
-			"scriptEl",
-			"imagesScript"
+			"setAreaDims"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1004,7 +1024,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -1013,26 +1033,57 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6146,
+						"buffer_size": 6785,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2334,
-								2334
+								2260,
+								2260
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"function_name_status_row": 4,
+							"function_name_status_row": 90,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1261.0,
+						"translation.y": 1351.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "tests/tests.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9041,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								868,
+								868
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"function_name_status_row": 42,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 364.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -1044,28 +1095,61 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7031,
+						"buffer_size": 9041,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								941,
-								941
+								5621,
+								5621
 							]
 						],
 						"settings":
 						{
-							"function_name_status_row": 45,
+							"auto_complete": false,
+							"function_name_status_row": 189,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1313.0,
+						"translation.y": 2002.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4628,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3268,
+								3291
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"default_dir": "D:\\myprojects\\dev\\js\\plugins\\accordion",
+							"function_name_status_row": 89,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 702.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -1074,57 +1158,26 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6146,
+						"buffer_size": 6785,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								81,
-								81
+								5457,
+								5457
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"function_name_status_row": 4,
+							"function_name_status_row": 234,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/js/header-item.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2214,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								25,
-								25
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"function_name_status_row": 3,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2665.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
@@ -1132,37 +1185,68 @@
 				},
 				{
 					"buffer": 3,
-					"file": "src/js/panel-item.js",
+					"file": "src/js/header-item.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 956,
+						"buffer_size": 3509,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								21,
-								21
+								1332,
+								1332
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"function_name_status_row": 0,
+							"function_name_status_row": 72,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 143.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 4,
+					"file": "src/js/panel-item.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1690,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1593,
+								1593
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"function_name_status_row": 90,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 864.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "src/sass/main.scss",
 					"semi_transient": false,
 					"settings":
@@ -1174,8 +1258,8 @@
 						"selection":
 						[
 							[
-								152,
-								152
+								151,
+								151
 							]
 						],
 						"settings":
@@ -1186,6 +1270,37 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "tests/demo.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 890,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								637,
+								637
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"function_name_status_row": 17,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 78.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,

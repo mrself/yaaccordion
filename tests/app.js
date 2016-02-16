@@ -197,10 +197,11 @@ Header.prototype = {
 	init: function(panelDName) {
 		this._panelDName = panelDName;
 		this.setId();
+		this._defineState();
 		this.panel = Panel.init(this._findPanelEl(), this._panelDName);
 		this.panel.setHeaderId(this.getId());
-		this._defineState();
 		this._initArea();
+		this.toggle();
 	},
 
 	/**
@@ -297,15 +298,12 @@ Header.prototype = {
 	 */
 	toggle: function(state) {
 		var self = this;
-		// l(this._state)
 		if (typeof state == 'undefined') {
 			this._state = !this._state;
 		} else {
 			if (state == this._state) return;
 			this._state = state;
 		}
-		// l(this._state)
-		// l(this.$el)
 		this._toggleArea(this._state);
 		this.panel.toggle(this._state, function() {
 			self.events.trigger('expand');
@@ -456,7 +454,8 @@ var keyCodes = require('./key-codes');
 
 					case keyCodes.UP:
 					case keyCodes.LEFT:
-						self.focusPrev();
+						if (!evt.ctrlKey)
+							self.focusPrev();
 						return;
 
 					case keyCodes.HOME:
@@ -471,6 +470,17 @@ var keyCodes = require('./key-codes');
 					case keyCodes.SPACE:
 						self.toggle(this.id);
 						return;
+				}
+			});
+			this.$el.on(this.eventName('keydown'), function(evt) {
+				switch (evt.which) {
+					case keyCodes.UP:
+					case keyCodes.LEFT:
+						if (evt.ctrlKey) {
+							self.getById(self._tabbable).focus();
+						}
+						return;
+
 				}
 			});
 		},
@@ -575,6 +585,9 @@ var keyCodes = require('./key-codes');
 			item.events.on('expand', function(e) {
 				self._onExpand(item);
 			});
+			item.events.on('contract', function(e) {
+				self._onContract(item);
+			});
 			if (this._itemsId.push(item.getId()) === 1 && this.options.firstExpanded) {
 				item.expand();
 			}
@@ -586,6 +599,16 @@ var keyCodes = require('./key-codes');
 			}
 			item.makeTabbable();
 			this._tabbable = item.getId();
+			this.$el.trigger(this.eventName('expand'), item);
+		},
+
+		_onContract: function(item) {
+			// if (this._tabbable) {
+			// 	this._items[this._tabbable].makeUnTabbable();
+			// }
+			// item.makeTabbable();
+			// this._tabbable = item.getId();
+			this.$el.trigger(this.eventName('contract'), item);
 		},
 
 		/**

@@ -38,7 +38,10 @@ function initPlugin (fixtureOptions, pluginOptions) {
 	pluginOptions = $.extend({
 		
 	}, pluginOptions);
-	var $el = makeFixture(fixtureOptions);
+	var $el = fixtureOptions.$el;
+	if (!$el) {
+		$el = makeFixture(fixtureOptions);
+	}
 	$el.yaaccordion(pluginOptions);
 	var inst = $el.data('plugin_yaaccordion');
 	return {inst: inst, $el: $el};
@@ -124,6 +127,24 @@ describe('Init', function() {
 			assert(this.inst.last().getId() == this.inst.getById(this.inst._tabbable).getId());
 		});
 
+		describe('cntrl up/left', function() {
+			it('when press control + up / left and focus is inside panel focus should go to management header', function() {
+				var header = this.inst.get(3);
+				var $link = $('<a href="#">Link</a>');
+				var self = this;
+				this.$el.on('expand.yaaccordion contract.yaaccordion', function(evt) {
+					assert(self.inst._tabbable == header.getId());
+				});
+				header.panel.$el.append($link);
+				var e = $.Event('keydown');
+				e.which = keyCodes.UP;
+				e.ctrlKey = true;
+				header.$el.trigger('click');
+				$link.trigger('focus');
+				$link.trigger(e);
+			});
+		});
+
 	});
 });
 
@@ -162,6 +183,13 @@ describe('Header', function() {
 		});
 	});
 
+	it('if header had "aria-expanded" property it should be expanded', function() {
+		var $el = makeFixture();
+		$el.find('.accordion__header').eq(3).attr('aria-expanded', true);
+		var obj = initPlugin({$el: $el}, {firstExpanded: false});
+		assert(obj.inst.get(3).getState() == true);
+	});
+
 	it('"_name" property is set form options', function() {
 		var $fixture = makeFixture({headerClass: 'accordion__myheader'});
 		$fixture.yaaccordion({names: {header: 'myheader'}});
@@ -185,12 +213,24 @@ describe('Header', function() {
 		assert(header.panel.$el[0].id = $el.attr('aria-controls'));
 	});
 
-	it('on header click it should toogle state', function() {
-		var header = this.inst.first();
-		var state = header.getState();
-		header.$el.click();
-		assert(header.getState() !== state);
+	describe('click event', function() {
+		it('on header click it should toogle state', function() {
+			var header = this.inst.first();
+			var state = header.getState();
+			header.$el.click();
+			assert(header.getState() !== state);
+		});
+		it('on header click _tabbable property should be changed to id of clicked header', function() {
+			var header = this.inst.get(3);
+			var self = this;
+			this.$el.on('expand.yaaccordion contract.yaaccordion', function(evt, header) {
+				assert(header.getId() === self.inst._tabbable);
+			});
+			header.$el.click();
+		});
 	});
+
+	
 
 	it('#setId', function() {
 		var $header = this.$el.find('.accordion__header');

@@ -41,10 +41,11 @@ Header.prototype = {
 	init: function(panelDName) {
 		this._panelDName = panelDName;
 		this.setId();
+		this._defineState();
 		this.panel = Panel.init(this._findPanelEl(), this._panelDName);
 		this.panel.setHeaderId(this.getId());
-		this._defineState();
 		this._initArea();
+		this.toggle();
 	},
 
 	/**
@@ -141,15 +142,12 @@ Header.prototype = {
 	 */
 	toggle: function(state) {
 		var self = this;
-		// l(this._state)
 		if (typeof state == 'undefined') {
 			this._state = !this._state;
 		} else {
 			if (state == this._state) return;
 			this._state = state;
 		}
-		// l(this._state)
-		// l(this.$el)
 		this._toggleArea(this._state);
 		this.panel.toggle(this._state, function() {
 			self.events.trigger('expand');

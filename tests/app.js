@@ -485,7 +485,7 @@ var keyCodes = require('./key-codes');
 			}).on(this.eventName('focusin'), function(ev) {
 				var $panel = self.$panel.has(ev.target);
 				if ($panel.length)
-					self._tabbable = $panel.attr('labbelledby');
+					self._tabbable = $panel.attr('labelledby');
 			});
 		},
 

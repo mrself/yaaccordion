@@ -81,23 +81,28 @@ describe('Init', function() {
 		it('next', function() {
 			var e = $.Event('keydown');
 			e.which = keyCodes.RIGHT;
+			var tabbable = this.inst._tabbable;
 			this.inst.$header.first().trigger(e);
-			assert(this.inst.get(1).getId() == this.inst._tabbable);
+			assert(this.inst.getNext(tabbable).getId() == this.inst._tabbable);
 		});
 
 		it('next twice', function() {
+			var tabbable = this.inst._tabbable;
+			var nextTabbable = this.inst.getNext(tabbable).getId();
+			nextTabbable = this.inst.getNext(nextTabbable).getId();
 			var e = $.Event('keydown');
 			e.which = keyCodes.RIGHT;
 			this.inst.$header.first().trigger(e);
 			this.inst.$header.eq(1).trigger(e);
-			assert(this.inst.get(2).getId() == this.inst._tabbable);
+			assert(nextTabbable == this.inst._tabbable);
 		});
 
 		it('prev', function() {
+			var tabbable = this.inst._tabbable;
 			var e = $.Event('keydown');
 			e.which = keyCodes.LEFT;
 			this.inst.$header.first().trigger(e);
-			assert(this.inst.last().getId() == this.inst._tabbable);
+			assert(this.inst.getPrev(tabbable).getId() == this.inst._tabbable);
 		});
 
 		it('toggle on space / enter', function() {
@@ -160,6 +165,7 @@ describe('Init', function() {
 		});
 
 	});
+
 });
 
 describe('Component', function() {
@@ -194,6 +200,36 @@ describe('Header', function() {
 		var self = this;
 		this.inst.$header.each(function(index) {
 			assert(this === self.$el.find('.accordion__header')[index]);
+		});
+	});
+
+	describe('tabindex = 0 in proper header element', function() {
+		it('on init', function() {
+			assert(this.$el.find('.accordion__header[tabindex=0]').length == 1);
+		});
+
+		it('on click on one of the header element', function(done) {
+			var $el = makeFixture();
+			$el.on('expand.yaaccordion', function(ev, item) {
+				assert($el.find('.accordion__header[tabindex=0]')[0] === item.$el[0]);
+				done();
+			});
+			var obj = initPlugin({$el: $el}, {firstExpanded: false});
+			obj.inst.get(3).$el.trigger('click');
+		});
+		it('on click on three of the header element', function(done) {
+			var $el = makeFixture();
+			var counter = 0;
+			$el.on('expand.yaaccordion', function(ev, item) {
+				if (++counter == 3) {
+					assert($el.find('.accordion__header[tabindex=0]')[0] === item.$el[0]);
+					done();
+				}
+			});
+			var obj = initPlugin({$el: $el}, {firstExpanded: false});
+			obj.inst.get(3).$el.trigger('click');
+			obj.inst.get(0).$el.trigger('click');
+			obj.inst.get(1).$el.trigger('click');
 		});
 	});
 

@@ -108,7 +108,8 @@ var keyCodes = require('./key-codes');
 				}
 			}).on(this.eventName('focusin'), function(ev) {
 				var $panel = self.$panel.has(ev.target);
-				self._tabbable = $panel.attr('labbelledby');
+				if ($panel.length)
+					self._tabbable = $panel.attr('labbelledby');
 			});
 		},
 
@@ -232,11 +233,11 @@ var keyCodes = require('./key-codes');
 		},
 
 		_onContract: function(item) {
-			// if (this._tabbable) {
-			// 	this._items[this._tabbable].makeUnTabbable();
-			// }
-			// item.makeTabbable();
-			// this._tabbable = item.getId();
+			if (this._tabbable) {
+				this._items[this._tabbable].makeUnTabbable();
+			}
+			item.makeTabbable();
+			this._tabbable = item.getId();
 			this.$el.trigger(this.eventName('contract'), item);
 		},
 

@@ -38,6 +38,7 @@ Panel.prototype = {
 	 */
 	setHeaderId: function(id) {
 		this._headerId = id;
+		this.$el.attr('labelledby', id);
 	},
 
 	/**
@@ -53,7 +54,8 @@ Panel.prototype = {
 	 * @return {void}
 	 */
 	_initArea: function() {
-		this.$el.attr('role', 'tabpanel').attr('labelledby', this._headerId);
+		// l(this._headerId)
+		this.$el.attr('role', 'tabpanel');
 	},
 
 	/**

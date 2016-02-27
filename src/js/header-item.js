@@ -45,7 +45,7 @@ Header.prototype = {
 		this.panel = Panel.init(this._findPanelEl(), this._panelDName);
 		this.panel.setHeaderId(this.getId());
 		this._initArea();
-		this.toggle();
+		this.toggle(this._state, true);
 	},
 
 	/**
@@ -138,19 +138,19 @@ Header.prototype = {
 	/**
 	 * Toggle el state
 	 * @param  {boolean} state true - expand, false - contrace, undefined = toogle current
-	 * @return {[void]}
+	 * @return {void}
 	 */
-	toggle: function(state) {
+	toggle: function(state, force) {
 		var self = this;
 		if (typeof state == 'undefined') {
 			this._state = !this._state;
 		} else {
-			if (state == this._state) return;
+			if (state == this._state && !force) return;
 			this._state = state;
 		}
 		this._toggleArea(this._state);
 		this.panel.toggle(this._state, function() {
-			self.events.trigger('expand');
+			self.events.trigger(self._state ? 'expand' : 'contract');
 		});
 	},
 
@@ -194,7 +194,7 @@ Header.make = function(el, options) {
 	inst.el = el;
 	inst.$el = $(el);
 	inst.options = options;
-	inst.init();
+	inst.setId();
 	return inst;
 };
 module.exports = Header;

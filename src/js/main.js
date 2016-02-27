@@ -35,6 +35,7 @@ var keyCodes = require('./key-codes');
 		this._items = {};
 		this._itemsId = [];
 		this._tabbable = null; // id of tabbable item
+		this.$panel = $([]);
 	}
 	$.extend(Plugin.prototype, {
 		init: function() {
@@ -95,8 +96,7 @@ var keyCodes = require('./key-codes');
 						self.toggle(this.id);
 						return;
 				}
-			});
-			this.$el.on(this.eventName('keydown'), function(evt) {
+			}).on(this.eventName('keydown'), function(evt) {
 				switch (evt.which) {
 					case keyCodes.UP:
 					case keyCodes.LEFT:
@@ -106,6 +106,9 @@ var keyCodes = require('./key-codes');
 						return;
 
 				}
+			}).on(this.eventName('focusin'), function(ev) {
+				var $panel = self.$panel.has(ev.target);
+				self._tabbable = $panel.attr('labbelledby');
 			});
 		},
 
@@ -212,6 +215,8 @@ var keyCodes = require('./key-codes');
 			item.events.on('contract', function(e) {
 				self._onContract(item);
 			});
+			item.init(this._panelDName);
+			this.$panel = this.$panel.add(item.panel.$el);
 			if (this._itemsId.push(item.getId()) === 1 && this.options.firstExpanded) {
 				item.expand();
 			}
@@ -241,9 +246,7 @@ var keyCodes = require('./key-codes');
 		 * @return {HeaderItem}
 		 */
 		makeItem: function(el) {
-			var item = HeaderItem.make(el, this.options, this._panelDName);
-			item.init(this._panelDName);
-			return item;
+			return HeaderItem.make(el, this.options);
 		},
 
 		/**

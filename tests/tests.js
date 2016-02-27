@@ -64,6 +64,18 @@ describe('Init', function() {
 	it ('object has proper instance', function() {
 		assert(this.inst instanceof $.yaaccordion);
 	});
+	it('header is inited only once', function(done) {
+		var $el = makeFixture({count: 4});
+		var counter = 0;
+		$el.on('expand.yaaccordion contract.yaaccordion', function() {
+			counter++;
+		});
+		var obj = initPlugin({$el: $el}, {firstExpanded: false, slideDuration: 30});
+		setTimeout(function() {
+			assert(counter == 4, counter + ' times headers were inited');
+			done();
+		}, 31);
+	});
 
 	describe('keydown events', function() {
 		it('next', function() {
@@ -132,8 +144,10 @@ describe('Init', function() {
 				var header = this.inst.get(3);
 				var $link = $('<a href="#">Link</a>');
 				var self = this;
-				this.$el.on('expand.yaaccordion contract.yaaccordion', function(evt) {
-					assert(self.inst._tabbable == header.getId());
+				this.$el.on('expand.yaaccordion contract.yaaccordion', function(evt, _header) {
+					if (_header.getId() == header.getId()) {
+						assert(self.inst._tabbable == header.getId());
+					}
 				});
 				header.panel.$el.append($link);
 				var e = $.Event('keydown');
@@ -183,11 +197,14 @@ describe('Header', function() {
 		});
 	});
 
-	it('if header had "aria-expanded" property it should be expanded', function() {
+	it('if header had "aria-expanded" property it should be expanded', function(done) {
 		var $el = makeFixture();
 		$el.find('.accordion__header').eq(3).attr('aria-expanded', true);
 		var obj = initPlugin({$el: $el}, {firstExpanded: false});
-		assert(obj.inst.get(3).getState() == true);
+		setTimeout(function() {
+			assert(obj.inst.get(3).getState() == true);
+			done()
+		}, 1300)
 	});
 
 	it('"_name" property is set form options', function() {
@@ -287,7 +304,7 @@ describe('Panel', function() {
 		var obj = initPlugin({}, {firstExpanded: false});
 		var $panel = obj.$el.find('.accordion__panel').first();
 		var id = obj.inst.first().$el[0].id;
-		assert($panel.attr('labelledby', id));
+		assert($panel.attr('labelledby') == id);
 		assert($panel.attr('role') == 'tabpanel');
 		assert($panel.attr('aria-hidden') == 'false');
 	});

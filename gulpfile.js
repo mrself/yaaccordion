@@ -61,7 +61,8 @@ gulp.task('browser-sync', function() {
 		server: {
 			baseDir: './tests'
 		},
-		files: ['tests/**/*']
+		files: ['tests/**/*'],
+		browser: []
 	});
 });
 

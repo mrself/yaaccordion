@@ -1,0 +1,7 @@
+.accordion {
+  display: block; }
+  .accordion__wrap {
+    margin-bottom: 10px;
+    border: 1px solid #000; }
+  .accordion__panel {
+    display: none; }

@@ -13,7 +13,7 @@ var gulp = require('gulp'),
 	bundleLogger = require('./gulp-utils/bundleLogger');
 
 var src = './src/';
-var build = './build/';
+var build = './tests/';
 
 var config = {
 	src: {
@@ -36,7 +36,7 @@ gulp.task('watchify', function() {
 	var bundler = browserify({
 			cache: {}, packageCache: {}, fullPaths: false,
 			entries: './src/js/main.js',
-			dest: './build/' + outputFile
+			dest: './tests/' + outputFile
 		}),
 		watcher = watchify(bundler),
 		bundle = function() {
@@ -44,10 +44,10 @@ gulp.task('watchify', function() {
 			return watcher
 				.bundle()
 				.pipe(source(outputFile))
-				.pipe(gulp.dest('./build'))
+				.pipe(gulp.dest('./tests'))
 				.on('end', function() {
 					bundleLogger.end(outputFile);
-					setTimeout(browserSync.reload, 1500);
+					// setTimeout(browserSync.reload, 1500);
 				});
 		};
 
@@ -59,9 +59,10 @@ gulp.task('watchify', function() {
 gulp.task('browser-sync', function() {
 	browserSync.init({
 		server: {
-			baseDir: './build'
+			baseDir: './tests'
 		},
-		files: ['./build/*.html', 'test.*']
+		files: ['tests/**/*'],
+		browser: []
 	});
 });
 

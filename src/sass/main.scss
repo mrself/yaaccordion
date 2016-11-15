@@ -1,15 +1,18 @@
 $bl: '.accordion';
 #{$bl} {
-	&__wrap {
-		margin-bottom: 10px;
-		border: 1px solid #000;
-		
-	}
+	& {
+		display: block;
+		&__wrap {
+			margin-bottom: 10px;
+			border: 1px solid #000;
+			
+		}
 
-	&__panel {
-		display: none;
-		// &--expanded {
-		// 	display: block;
-		// }
+		&__panel {
+			display: none;
+			// &--expanded {
+			// 	display: block;
+			// }
+		}
 	}
 }

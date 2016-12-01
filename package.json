@@ -22,7 +22,9 @@
     "pretty-hrtime": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.4.0",
-    "ya-del": "git+https://github.com/mrself/ya-del.git#v1.0.1",
     "yargs": "^3.10.0"
+  },
+  "dependencies": {
+    "ya-del": "git+https://github.com/mrself/ya-del.git#v1.0.1"
   }
 }

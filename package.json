@@ -1,6 +1,6 @@
 {
   "name": "YaAccordion",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "devDependencies": {
     "bower": "^1.4.1",
     "browser-sync": "^2.9.3",

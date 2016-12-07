@@ -26,6 +26,6 @@
     "yargs": "^3.10.0"
   },
   "dependencies": {
-    "ya-del": "^1.2.0"
+    "ya-del": "github:mrself/ya-del#v1.2.0"
   }
 }

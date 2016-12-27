@@ -295,6 +295,7 @@ var keyCodes = require('./key-codes');
 
 	$.fn[pluginName] = function(options) {
 		return this.each(function() {
+			options = $.extend({}, options);
 			if ($.data(this, 'plugin_' + pluginName)) {
 				if (options.reinit) {
 					Plugin.init(this, options);

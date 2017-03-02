@@ -1,6 +1,6 @@
 {
   "name": "yaaccordion",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "devDependencies": {
     "bower": "^1.4.1",
     "browser-sync": "^2.9.3",

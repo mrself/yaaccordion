@@ -31,7 +31,7 @@ var keyCodes = require('./key-codes');
 		 * 
 		 */
 		this.el = el;
-		this.options = $.extend({}, defaults, options);
+		this.setOptions(options);
 		this._items = {};
 		this._itemsId = [];
 		this._tabbable = null; // id of tabbable item
@@ -47,6 +47,10 @@ var keyCodes = require('./key-codes');
 			this._defineNames();
 			this._makeItems();
 			this._initEvents();
+		},
+
+		setOptions: function(options) {
+			this.options = $.extend({}, defaults, options);
 		},
 
 		_initArea: function() {

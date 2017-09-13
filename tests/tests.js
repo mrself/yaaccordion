@@ -70,7 +70,7 @@ describe('Init', function() {
 		$el.on('expand.yaaccordion contract.yaaccordion', function() {
 			counter++;
 		});
-		var obj = initPlugin({$el: $el}, {firstExpanded: false, slideDuration: 30});
+		var obj = initPlugin({$el: $el}, {firstExpanded: false, slideDuration: 30, multiselectable: true});
 		setTimeout(function() {
 			assert(counter == 4, counter + ' times headers were inited');
 			done();
@@ -226,7 +226,7 @@ describe('Header', function() {
 					done();
 				}
 			});
-			var obj = initPlugin({$el: $el}, {firstExpanded: false});
+			var obj = initPlugin({$el: $el}, {firstExpanded: false, multiselectable: true});
 			obj.inst.get(3).$el.trigger('click');
 			obj.inst.get(0).$el.trigger('click');
 			obj.inst.get(1).$el.trigger('click');

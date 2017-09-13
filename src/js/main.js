@@ -35,6 +35,7 @@ var keyCodes = require('./key-codes');
 		this._items = {};
 		this._itemsId = [];
 		this._tabbable = null; // id of tabbable item
+		this.active = null;
 		this.$panel = $([]);
 	}
 	$.extend(Plugin.prototype, {
@@ -251,7 +252,21 @@ var keyCodes = require('./key-codes');
 		 * @return {HeaderItem}
 		 */
 		makeItem: function(el) {
-			return HeaderItem.make(el, this.options);
+			return HeaderItem.make(el, $.extend({}, this.options, {
+				onToggle: this.onItemToggle.bind(this)
+			}));
+		},
+
+		onItemToggle: function(item, state) {
+			if (!state) {
+				if (!this.options.multiselectable && this.active && this.active.getId() != item.getId())
+					return false;
+			} else {
+				if (this.active && !this.options.multiselectable)
+					this.active.contract();
+			}
+			this.active = item;
+			return true;
 		},
 
 		/**

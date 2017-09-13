@@ -143,9 +143,11 @@ Header.prototype = {
 	toggle: function(state, force) {
 		var self = this;
 		if (typeof state == 'undefined') {
+			if (!this.options.onToggle(this, !this._state)) return;
 			this._state = !this._state;
 		} else {
 			if (state == this._state && !force) return;
+			if (!this.options.onToggle(this, state)) return;
 			this._state = state;
 		}
 		this._toggleArea(this._state);

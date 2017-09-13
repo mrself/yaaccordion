@@ -1,6 +1,6 @@
 {
   "name": "yaaccordion",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "scripts": {
     "postversion": "git checkout master && git merge develop && git push && git push --tags && git checkout develop"
   },
